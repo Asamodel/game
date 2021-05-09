@@ -12,27 +12,28 @@ var platform
 function preload(){
 
 
-backgroundimg = loadImage("Images'/villages.png")
+backgroundimg = loadImage("images/villages.png")
+playerimg = loadImage("images/player.jpg");
 
-
-platform = loadImage("Images'/platformimg.jpg")
+platform = loadImage("images/platformimg.jpg")
 
 }
 
 function setup(){
-    createCanvas(2000,2000)
-backgroundimg2 = createSprite(500,500,1000,1000)
+    createCanvas(1360,600)
+backgroundimg2 = createSprite(680,300,1360,600)
 backgroundimg2.addImage(backgroundimg)
 backgroundimg2.scale = 6.7
     
-ground = createSprite(1000,1970,1000,100)
+ground = createSprite(680,590,1360,20)
 ground.shapeColor = "#2D1918"
 
-villagernpc = createSprite(970,900,40,40)
+villagernpc = createSprite(970,555,40,40)
 villagernpc.shapeColor = "green"
 
-player = createSprite(80,900,40,40)
-player.shapeColor = "yellow"
+player = createSprite(200,555,40,40)
+player.addImage(playerimg);
+player.scale = 0.2;
 
 }
 
@@ -48,11 +49,19 @@ function draw(){
 
     }
 
-   if (keyDown(UP_ARROW)){
-player.velocityY = -10
+   if (keyWentDown(UP_ARROW))
+   {
+    player.velocityY = -10
    }
-   player.velocityY += 0.8;
+   
+   if (keyWentUp(UP_ARROW))
+   {
+    player.velocityY = 10
+   }
+   
    player.collide(ground)
+   villagernpc.collide(ground)
+
 
 
 
@@ -65,7 +74,7 @@ player.velocityY = -10
     text("press space to continue",300,900)
 
     
-   if(keyDown("space")){
+  /* if(keyDown("space")){
 background("black")
 
 
@@ -77,7 +86,7 @@ text("But now it has all been ravaged for every penny... everyone above the age 
 text("You are their only hope... legends tell of a ancient sword capable of making thier weilder a warrior...i happen to know its location but i dont have long to live...Its up to you now..good luck on your journey little hero",200,700)
 text("move forward towards the fiery cavern to obtain the legendary sword and free your family",200,1000)
 
-}
+}*/
 
 }
 
